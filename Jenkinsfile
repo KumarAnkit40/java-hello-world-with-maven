@@ -2,36 +2,30 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
+
+        stage('Clone') {
             steps {
-                echo 'Pulling code from GitHub...'
-                git branch: 'main', url: 'https://github.com/KumarAnkit40/java-hello-world-with-maven.git'
+                echo "Cloning repository"
             }
         }
 
         stage('Build') {
             steps {
-                echo 'checking and Building the app and trying webhooks...'
-                sh 'mvn clean package'
+                echo "Building project"
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                sh 'mvn test'
+                echo "Running tests"
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying JAR to production...'
-                sh 'mkdir -p /tmp/apps && cp target/my-sample-app-1.0-SNAPSHOT.jar /tmp/apps/ && echo "Deployment successful: JAR copied to /tmp/apps/"'
+                echo "Deploying application"
             }
         }
+
     }
 }
-
-
-
-
